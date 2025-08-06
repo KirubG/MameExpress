@@ -15,17 +15,16 @@ const ProductDetail = ({ product }: Props) => {
   const router = useRouter();
   const price = product.default_price as Stripe.Price;
   const cartItem = items.find((item) => item.id === product.id);
-  const quantity = cartItem ? cartItem.quantity : 0;
 
   const onAddItem = () => {
     addItem({
       id: product.id,
       name: product.name,
-      price: price.unit_amount as number, 
+      price: price.unit_amount as number,
       quantity: 1,
       imageUrl: product.images && product.images[0] ? product.images[0] : null,
-    })
-  }
+    });
+  };
   return (
     <>
       <div>
@@ -70,11 +69,10 @@ const ProductDetail = ({ product }: Props) => {
 
             {/* Quantity */}
             <div className="flex items-center">
-              <Button onClick={()=> removeItem(product.id)} className="px-4">-</Button>
-              <h2 className="mx-6 font-bold text-2xl">{quantity}</h2>
-              <Button onClick={onAddItem} className="px-4">+</Button>
+              <Button onClick={onAddItem} className="px-6">
+                Add to Cart
+              </Button>
             </div>
-
           </div>
         </div>
       </div>
