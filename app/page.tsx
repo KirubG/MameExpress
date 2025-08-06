@@ -1,4 +1,4 @@
-import Carousel from "@/componenets/Carousel";
+import Carousel from "@/components/Carousel";
 import { Button } from "@/components/ui/button";
 import { stripe } from "@/lib/stripe";
 import { log } from "console";

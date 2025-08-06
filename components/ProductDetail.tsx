@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ProductDetail = ({ product }: Props) => {
-  const { items, addItem } = useCartStore();
+  const { items, addItem, removeItem, clearCart } = useCartStore();
   const router = useRouter();
   const price = product.default_price as Stripe.Price;
   const cartItem = items.find((item) => item.id === product.id);
@@ -39,7 +39,7 @@ const ProductDetail = ({ product }: Props) => {
       </div>
 
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-2xl p-8 mt-10">
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col md:flex-row gap-6">
           {/* Left: Image */}
           {product.images && product.images[0] && (
             <div className="flex-shrink-0 w-full md:w-[400px] h-auto border rounded-xl overflow-hidden flex justify-center items-center">
@@ -55,7 +55,7 @@ const ProductDetail = ({ product }: Props) => {
           )}
 
           {/* Right: Details */}
-          <div className="flex flex-col justify-between space-y-2 w-full">
+          <div className="flex flex-col space-y-6 w-full">
             <h1 className="text-4xl font-bold text-gray-800">{product.name}</h1>
 
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -70,14 +70,11 @@ const ProductDetail = ({ product }: Props) => {
 
             {/* Quantity */}
             <div className="flex items-center">
-              <Button className="px-4">-</Button>
+              <Button onClick={()=> removeItem(product.id)} className="px-4">-</Button>
               <h2 className="mx-6 font-bold text-2xl">{quantity}</h2>
               <Button onClick={onAddItem} className="px-4">+</Button>
             </div>
 
-            <Button className="w-full py-3 text-lg font-medium  text-white rounded-xl transition duration-200">
-              Add to Cart
-            </Button>
           </div>
         </div>
       </div>

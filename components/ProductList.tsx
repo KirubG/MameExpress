@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Stripe from "stripe";
@@ -36,7 +37,9 @@ const ProductList = ({ products }: Props) => {
             <Link href={`/products/${product.id}`}>
               <h2 className="text-xl font-semibold">{product.name}</h2>
               {product.images && product.images[0] && (
-                <img
+                <Image
+                  width={192}
+                  height={192}
                   src={product.images[0]}
                   alt={product.name}
                   className="w-48 h-48 object-cover mt-4"

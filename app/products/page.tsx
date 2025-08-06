@@ -1,6 +1,6 @@
 import React from "react";
 import { stripe } from "@/lib/stripe";
-import ProductList from "@/componenets/ProductList";
+import ProductList from "@/components/ProductList";
 const productsPage = async () => {
   const products = await stripe.products.list({
     expand: ["data.default_price"],
