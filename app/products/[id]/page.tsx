@@ -1,13 +1,13 @@
-// app/products/[id]/page.tsx
-
 import { stripe } from "@/lib/stripe";
 import ProductDetail from "@/components/ProductDetail";
 
-type Props = {
-  params: { id: string };
-};
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
 
-export default async function ProductsPage({ params }: Props) {
+const ProductsPage = async ({ params }: PageProps) => {
   const product = await stripe.products.retrieve(params.id, {
     expand: ["default_price"],
   });
@@ -19,4 +19,6 @@ export default async function ProductsPage({ params }: Props) {
       <ProductDetail product={plainProduct} />
     </div>
   );
-}
+};
+
+export default ProductsPage;
