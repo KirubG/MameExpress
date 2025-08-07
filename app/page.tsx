@@ -1,8 +1,6 @@
 import Carousel from "@/components/Carousel";
 import { Button } from "@/components/ui/button";
 import { stripe } from "@/lib/stripe";
-import { log } from "console";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -29,15 +27,8 @@ const page = async () => {
             </Button>
           </div>
           <Carousel products={products.data} />
-          {/* <Image
-            alt="Banner Image"
-            width={300}
-            height={300}
-            src={products.data[0].images[0]}
-          /> */}
         </div>
       </section>
-      <section>{/* <Carousel products={products.data} />     */}</section>
     </div>
   );
 };

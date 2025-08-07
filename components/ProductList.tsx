@@ -21,15 +21,16 @@ const ProductList = ({ products }: Props) => {
   });
   return (
     <div>
-      <div className="w-full">
+      <div className="w-full flex justify-center mt-8">
         <input
           type="text"
-          placeholder="Search Products ...."
+          placeholder="🔍 Search for products..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex justify-between items-center mx-16 mt-8 outline-1 outline-gray-300 p-4 rounded-lg"
+          className="w-full max-w-xl p-4 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
         />
       </div>
+
       <h1 className="text-3xl font-semibold mx-16 mt-8">All Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-16 mt-8">
         {filteredProducts.map((product: Stripe.Product) => (

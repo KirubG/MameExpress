@@ -11,7 +11,7 @@ import React, { useState } from "react";
 const Navbar = () => {
   const { items } = useCartStore();
   const [isOpen, setIsOpen] = useState(false);
-  let cartCount = items.reduce((count, item) => count + item.quantity, 0);
+  const cartCount = items.reduce((count, item) => count + item.quantity, 0);
 
   return (
     <nav className="bg-gray-100 shadow-md">

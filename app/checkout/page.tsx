@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCartStore } from "@/store/cart-store";
 import Image from "next/image";
 import {
@@ -15,9 +14,9 @@ import {
 } from "@/components/ui/table";
 import { checkoutAction } from "./checkout-action";
 
-const checkoutPage = () => {
+const CheckoutPage = () => {
   const { items, removeItem, addItem, clearCart } = useCartStore();
-  let totalPrice =
+  const totalPrice =
     items.reduce((total, item) => {
       return total + item.price * item.quantity;
     }, 0) / 100;
@@ -104,4 +103,4 @@ const checkoutPage = () => {
   );
 };
 
-export default checkoutPage;
+export default CheckoutPage;

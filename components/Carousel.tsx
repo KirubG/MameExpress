@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import Stripe from "stripe";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -8,7 +8,7 @@ interface Props {
   products: Stripe.Product[];
 }
 const Carousel = ({ products }: Props) => {
-  let [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
