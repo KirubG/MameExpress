@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { useCartStore } from "@/store/cart-store";
+import { useState } from "react";
 
 interface Props {
   product: Stripe.Product;
@@ -15,7 +16,7 @@ const ProductDetail = ({ product }: Props) => {
   const router = useRouter();
   const price = product.default_price as Stripe.Price;
   const cartItem = items.find((item) => item.id === product.id);
-
+  const [isAdded, setIsAdded] = useState(false);
   const onAddItem = () => {
     addItem({
       id: product.id,
@@ -24,6 +25,7 @@ const ProductDetail = ({ product }: Props) => {
       quantity: 1,
       imageUrl: product.images && product.images[0] ? product.images[0] : null,
     });
+    setIsAdded(true);
   };
   return (
     <>
@@ -69,8 +71,8 @@ const ProductDetail = ({ product }: Props) => {
 
             {/* Quantity */}
             <div className="flex items-center">
-              <Button onClick={onAddItem} className="px-6">
-                Add to Cart
+              <Button disabled={isAdded} onClick={onAddItem} className="px-6">
+                {isAdded ? "Added" : "Add to Cart"}
               </Button>
             </div>
           </div>

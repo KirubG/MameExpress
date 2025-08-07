@@ -10,15 +10,15 @@ interface Props {
 }
 
 const ProductList = ({ products }: Props) => {
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const filteredProducts = products.filter((product) =>{
-        const term = searchTerm.toLowerCase();
-        const nameMatch = product.name.toLowerCase().includes(term);
-        const descriptionMatch = product.description?.toLowerCase().includes(term) || false;
-        return nameMatch || descriptionMatch;
-    })
+  const filteredProducts = products.filter((product) => {
+    const term = searchTerm.toLowerCase();
+    const nameMatch = product.name.toLowerCase().includes(term);
+    const descriptionMatch =
+      product.description?.toLowerCase().includes(term) || false;
+    return nameMatch || descriptionMatch;
+  });
   return (
     <div>
       <div className="w-full">
@@ -32,7 +32,7 @@ const ProductList = ({ products }: Props) => {
       </div>
       <h1 className="text-3xl font-semibold mx-16 mt-8">All Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-16 mt-8">
-        {filteredProducts.map((product) => (
+        {filteredProducts.map((product: Stripe.Product) => (
           <div key={product.id} className="border p-4 rounded-lg shadow-md">
             <Link href={`/products/${product.id}`}>
               <h2 className="text-xl font-semibold">{product.name}</h2>

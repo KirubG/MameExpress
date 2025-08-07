@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { checkoutAction } from "./checkout-action";
 
 const checkoutPage = () => {
   const { items, removeItem, addItem, clearCart } = useCartStore();
@@ -94,7 +95,8 @@ const checkoutPage = () => {
         >
           Clear Cart
         </Button>
-        <form className="mt-8" action="">
+        <form className="mt-8" action={checkoutAction}>
+          <input type="hidden" name="items" value={JSON.stringify(items)} />
           <Button className="mx-40 px-10">Proceed to Payment</Button>
         </form>
       </div>
