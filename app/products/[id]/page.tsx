@@ -3,11 +3,11 @@
 import { stripe } from "@/lib/stripe";
 import ProductDetail from "@/components/ProductDetail";
 
-export default async function ProductsPage({
-  params,
-}: {
+type Props = {
   params: { id: string };
-}) {
+};
+
+export default async function ProductsPage({ params }: Props) {
   const product = await stripe.products.retrieve(params.id, {
     expand: ["default_price"],
   });
