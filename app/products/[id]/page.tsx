@@ -1,14 +1,15 @@
 import { stripe } from "@/lib/stripe";
 import ProductDetail from "@/components/ProductDetail";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-const ProductsPage = async ({ params }: PageProps) => {
-  const product = await stripe.products.retrieve(params.id, {
+// async({params} : {params: Promise<{id? : string}>}) => {
+//  const id = (await params).id;
+export default async function ProductsPage({
+  params,
+}: {
+  params: Promise<{ id?: string }>;
+}) {
+  const id = (await params).id;
+  const product = await stripe.products.retrieve(id, {
     expand: ["default_price"],
   });
 
@@ -19,6 +20,4 @@ const ProductsPage = async ({ params }: PageProps) => {
       <ProductDetail product={plainProduct} />
     </div>
   );
-};
-
-export default ProductsPage;
+}
